@@ -1,0 +1,20 @@
+.text-title {
+    color: red;
+}
+
+.slds-modal__close {
+    display: none;
+}
+
+.slds-modal__container {
+    max-width: 30%;
+    width: 30%;
+}
+
+@media (min-width: 48em) {
+    .slds-modal_small .slds-modal__container {
+        max-width: 30%;
+        width: 30%;
+        min-width: 30%;
+    }
+}

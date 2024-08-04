@@ -1,0 +1,73 @@
+<template>
+    <div class="header-movie-box">
+        <lightning-card>
+            <div class="flex-box-movie" lwc:if={userInfo.Id}>
+                <lightning-button onclick={handleLogoutClick} label="Logout"
+                    class="left-margin-button"></lightning-button>
+            </div>
+
+            <div class="flex-box-movie" lwc:else>
+                <lightning-button onclick={handleLoginClick} label="Login"
+                    class="left-margin-button"></lightning-button>
+                <lightning-button onclick={handleRegisterClick} label="Register"
+                    class="left-margin-button"></lightning-button>
+            </div>
+
+            <div class="grid-box-movie" lwc:if={userInfo.Id}>
+                <div>Member: {userInfo.Id}</div>
+                <div>Rank: {userInfo.Rank__c}</div>
+                <div>Address: {userInfo.Address__c}</div>
+                <div>Email: {userInfo.Email__c}</div>
+            </div>
+        </lightning-card>
+    </div>
+
+    <div class="mb-10">
+        <lightning-card title="Movie Filter">
+            <div class="flex-box box-filter">
+                <div class="mr-10">
+                    <lightning-input type="text" label="Movie" value={filter.Name} onchange={handleChangeValue} name="name"></lightning-input>
+                </div>
+                <div class="flex-box">
+                    <lightning-input type="date" label="From" class="mr-10 w-180" value={filter.FromDate} onchange={handleChangeValue} name="fromdate"></lightning-input>
+                    <lightning-input type="date" label="To" class="mr-10 w-180" value={filter.ToDate} onchange={handleChangeValue} name="todate"></lightning-input>
+                </div>
+                <div class="button-base-line">
+                    <lightning-button onclick={handleSearchClick} label="Search"
+                        class="left-margin-button"></lightning-button>
+                </div>
+            </div>
+        </lightning-card>
+    </div>
+
+    <lightning-card title="Movie List">
+        <lightning-tabset>
+            <lightning-tab label="Movies" title="Movie list">
+                <div class="movie-data-items">
+                    <div class="grid-movie-box">
+                        <template for:each={movies} for:item="mv">
+                            <div class="movie-box" key={mv.Id}>
+                                <div class="movie-box_img">
+                                    <img src={imgFilmDefault} alt="File Image" />
+                                </div>
+                                <div class="movie-box_content">
+                                    <p><b>Name:</b> {mv.Name__c}</p>
+                                    <p><b>Description:</b> {mv.Description__c}</p>
+                                    <p><b>Showing From:</b> text</p>
+                                    <p><b>Duration:</b> {mv.Duration__c}</p>
+        
+                                    <div class="mt-10">
+                                        <lightning-button label="Book" title="Booking the movie"></lightning-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </lightning-tab>
+            <lightning-tab label="Booking" title="Booking list" lwc:if={userInfo.Id}>
+                Two Content !
+            </lightning-tab>
+        </lightning-tabset>
+    </lightning-card>
+</template>

@@ -1,0 +1,18 @@
+<template>
+    <lightning-modal-header label="Register User"></lightning-modal-header>
+    <lightning-modal-body>
+        <form>
+            <div class="slds-p-around_small lgc-bg" style="width: 400px;">
+                <lightning-input type="text" label="Email" onchange={handleChangeValue} name="email"></lightning-input>
+            </div>
+
+            <div class="slds-p-around_small lgc-bg" style="width: 400px;">
+                <lightning-input type="text" label="Address" onchange={handleChangeValue} name="address"></lightning-input>
+            </div>
+        </form>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button variant="neutral" label="Cancel" onclick={handleCancel} class="slds-p-right_x-small"></lightning-button>
+        <lightning-button variant="neutral" label="Register" onclick={registerUser} class="slds-p-right_x-small"></lightning-button>
+    </lightning-modal-footer>
+</template>
