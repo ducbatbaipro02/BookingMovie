@@ -26,9 +26,18 @@ public with sharing class MovieListService {
         }
     }
 
+    /**
+     * Get membership info
+     * @Param email
+     * @return user membership info
+     */
     @AuraEnabled(cacheable=true)
     public static Membership__c GetMemberShipInfo(String email) {
-        String query = 'SELECT Id, Email__c, Address__c, Point__c, Rank__c FROM Membership__c WHERE Email__c = :email LIMIT 1';
-        return Database.query(query);
+        try {
+            String query = 'SELECT Id, Email__c, Address__c, Point__c, Rank__c FROM Membership__c WHERE Email__c = :email LIMIT 1';
+            return Database.query(query);
+        } catch (Exception error) {
+            throw new CustomException(error.getMessage());
+        }
     }
 }

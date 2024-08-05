@@ -26,14 +26,20 @@
         <lightning-card title="Movie Filter">
             <div class="flex-box box-filter">
                 <div class="mr-10">
-                    <lightning-input type="text" label="Movie" value={filter.Name} onchange={handleChangeValue} name="name"></lightning-input>
+                    <lightning-input type="text" label="Movie" value={filter.Name} onchange={handleChangeValue}
+                        name="Name"></lightning-input>
                 </div>
                 <div class="flex-box">
-                    <lightning-input type="date" label="From" class="mr-10 w-180" value={filter.FromDate} onchange={handleChangeValue} name="fromdate"></lightning-input>
-                    <lightning-input type="date" label="To" class="mr-10 w-180" value={filter.ToDate} onchange={handleChangeValue} name="todate"></lightning-input>
+                    <lightning-input type="date" label="From" class="mr-10 w-180" value={filter.FromDate}
+                        onchange={handleChangeValue} name="FromDate"></lightning-input>
+                    <lightning-input type="date" label="To" class="mr-10 w-180" value={filter.ToDate}
+                        onchange={handleChangeValue} name="ToDate"></lightning-input>
                 </div>
                 <div class="button-base-line">
                     <lightning-button onclick={handleSearchClick} label="Search"
+                        class="left-margin-button"></lightning-button>
+
+                    <lightning-button onclick={handleClearClick} label="Clear"
                         class="left-margin-button"></lightning-button>
                 </div>
             </div>
@@ -44,7 +50,8 @@
         <lightning-tabset>
             <lightning-tab label="Movies" title="Movie list">
                 <div class="movie-data-items">
-                    <div class="grid-movie-box">
+                    <h4 class="f-14 ml-10"><b>Total items: {movies.length}</b></h4>
+                    <div class="grid-movie-box" lwc:if={movies.length}>
                         <template for:each={movies} for:item="mv">
                             <div class="movie-box" key={mv.Id}>
                                 <div class="movie-box_img">
@@ -55,14 +62,19 @@
                                     <p><b>Description:</b> {mv.Description__c}</p>
                                     <p><b>Showing From:</b> text</p>
                                     <p><b>Duration:</b> {mv.Duration__c}</p>
-        
+
                                     <div class="mt-10">
-                                        <lightning-button label="Book" title="Booking the movie"></lightning-button>
+                                        <lightning-button label="Book" title="Booking the movie"
+                                            onclick={handleRedirect}></lightning-button>
                                     </div>
                                 </div>
                             </div>
                         </template>
                     </div>
+
+                    <p class="f-14 ml-10" lwc:else>
+                        <b>No item found!</b>
+                    </p>
                 </div>
             </lightning-tab>
             <lightning-tab label="Booking" title="Booking list" lwc:if={userInfo.Id}>

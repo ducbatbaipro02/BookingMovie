@@ -1,0 +1,51 @@
+<template>
+    <div class="header-movie-box">
+        <lightning-card>
+            <div class="flex-box">
+                <div class="movie-content">
+                    <div class="flex-box direction-column">
+                        <div class="movie-box_img">
+                            <img src={imgFilmDefault} alt="File Image" />
+                        </div>
+
+                        <div class="movie-box_content f-14">
+                            <p><b>Name:</b> {movieDetail.Name__c}</p>
+                            <p><b>Description:</b> {movieDetail.Description__c}</p>
+                            <p><b>Genre:</b> {movieDetail.Genre__c}</p>
+                            <p><b>Showing From:</b> text</p>
+                            <p><b>Duration:</b> {movieDetail.Duration__c}</p>
+
+                            <div class="mt-10">
+                                <lightning-button label="Book" title="Booking the movie"></lightning-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="movie-detail_data">
+                    <div class="flex-box direction-column">
+                        <h3 class="f-18"><b>Trailer</b></h3>
+                        <p>Show trailer video</p>
+
+                        <h3 class="f-18"><b>Show time</b></h3>
+                        <div class="showtime-box">
+                            <lightning-datatable key-field="id" data={formattedData} columns={columns} onrowselection={handleRowSelection}
+                            selected-rows={selectedRows}
+                            selected-rows-mode="single">
+                            </lightning-datatable>
+                        </div>
+
+                        <div class="group-action-showtime mt-10">
+                            <h4 class="f-14"><b>Selected showtime: </b></h4>
+                            <h4 class="f-14"><b>Selected seat type: </b></h4>
+
+                            <div class="mt-10">
+                                <lightning-button label="Checkout" title="Booking the movie"></lightning-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </lightning-card>
+    </div>
+</template>

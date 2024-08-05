@@ -15,19 +15,28 @@ export default class RegisterForm extends LightningModal {
         loadStyle(this, formStyles);
     }
 
+    /**
+     * Close popup
+     * Time create: 05/08/2024
+     */
     handleCancel() {
         this.close('okay');
     }
 
+    /**
+     * Get value input
+     * @param {*} event
+     * Time create: 05/08/2024 
+     */
     handleChangeValue(event) {
         const { name, value } = event.target;
-        if (name === 'email') {
-            this.Email = value;
-        } else {
-            this.Address = value;
-        }
+        this.filter[name] = value;
     }
 
+    /**
+     * Register new user
+     * Time create: 05/08/2024
+     */
     registerUser() {
         const user = {
             Email__c: this.Email,
@@ -42,6 +51,13 @@ export default class RegisterForm extends LightningModal {
         });
     }
 
+    /**
+     * Show toast message
+     * @param {*} title 
+     * @param {*} type (success, error, info)
+     * @param {*} message 
+     * Time create: 05/08/2024
+     */
     showToast(title, type, message) {
         const event = new ShowToastEvent({
             title: title,
